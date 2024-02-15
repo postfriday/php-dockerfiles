@@ -1,5 +1,6 @@
 ARG PHP_ENVIRONMENT=development
 ARG PHP_INTERFACE=cli
+ARG PHP_INI_FILE
 
 FROM php:8.2-${PHP_INTERFACE}-alpine as base
 
@@ -65,15 +66,13 @@ RUN apk add libintl icu icu-dev \
 ########################################################################################################################
 FROM base as branch-production
 
-COPY 8.2/etc/php.ini-production $PHP_INI_DIR/php.ini
+#
 
 
 ########################################################################################################################
 # Development build
 ########################################################################################################################
 FROM base as branch-development
-
-COPY 8.2/etc/php.ini-development $PHP_INI_DIR/php.ini
 
 # Install Composer
 #
@@ -102,6 +101,8 @@ RUN echo "xdebug.mode=debug" >> $XDEBUGINI_PATH \
 # Final
 ########################################################################################################################
 FROM branch-${PHP_ENVIRONMENT} as final
+
+COPY ${PHP_INI_FILE} $PHP_INI_DIR/php.ini
 
 # Clear
 RUN rm -rf /tmp/* /var/cache/apk/*
