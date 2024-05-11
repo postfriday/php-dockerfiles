@@ -27,6 +27,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: "ghcr.io/${{ github.actor }}/php:8.2-cli-dev"
+          tags: "ghcr.io/${{ github.repository }}/php:8.2-cli-dev"
           file: 8.2/Dockerfile
           labels: "org.opencontainers.image.source=https://github.com/${{ github.repository }}"
