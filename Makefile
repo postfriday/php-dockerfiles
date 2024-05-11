@@ -1,11 +1,13 @@
 #!/usr/bin/env make
 # SHELL = sh -xv
 
+GITHUB_NAMESPACE := postfriday
+GITHUB_REPOSITORY := php-dockerfiles
 PHP_VERSION := 8.1
 PHP_INTERFACE := fpm
 PHP_ENVIRONMENT := development
-PHP_TAG := php:${PHP_VERSION}-${PHP_INTERFACE}-${PHP_ENVIRONMENT}
-PHP_INI_FILE := 8.2/etc/php.ini-development
+PHP_TAG := ghcr.io/${GITHUB_NAMESPACE}/${GITHUB_REPOSITORY}/php:${PHP_VERSION}-${PHP_INTERFACE}-${PHP_ENVIRONMENT}
+PHP_INI_FILE := ${PHP_VERSION}/etc/php.ini-development
 
 .PHONY: help
 help:      ## Shows this help message
@@ -19,6 +21,7 @@ build: ## Build
 		--build-arg PHP_INTERFACE=${PHP_INTERFACE} \
 		--build-arg PHP_ENVIRONMENT=${PHP_ENVIRONMENT} \
 		--build-arg PHP_INI_FILE=${PHP_INI_FILE} \
+		--build-arg PHP_VERSION=${PHP_VERSION} \
 		.
 
 .PHONY: run
