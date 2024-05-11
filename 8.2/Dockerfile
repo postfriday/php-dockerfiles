@@ -2,6 +2,9 @@ ARG PHP_ENVIRONMENT=development
 ARG PHP_INTERFACE=cli
 ARG PHP_INI_FILE
 
+LABEL org.opencontainers.image.source=https://github.com/${GITHUB_NAMESPACE}/${GITHUB_REPOSITORY_NAME}
+LABEL org.opencontainers.image.description="PHP 8.2-${PHP_INTERFACE}-${PHP_ENVIRONMENT}"
+
 FROM php:8.2-${PHP_INTERFACE}-alpine as base
 
 WORKDIR /var/www/html
