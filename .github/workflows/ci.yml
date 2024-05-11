@@ -35,7 +35,7 @@ jobs:
           tags: ghcr.io/${{ github.actor }}/php:${{ matrix.version }}-${{ matrix.interface }}-${{ matrix.environment }}
           file: ${{ matrix.version }}/Dockerfile
           labels: "org.opencontainers.image.source=https://github.com/${{ github.repository }}"
-          build-args:
+          build-args: |
             PHP_VERSION=${{ matrix.version }}
             PHP_ENVIRONMENT=${{ matrix.environment }}
             PHP_INTERFACE=${{ matrix.interface }}
