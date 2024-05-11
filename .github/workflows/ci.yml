@@ -29,3 +29,4 @@ jobs:
           push: true
           tags: "ghcr.io/${{ github.actor }}/php:8.2-cli-dev"
           file: 8.2/Dockerfile
+          labels: "org.opencontainers.image.source=https://github.com/${{ GITHUB_REPOSITORY }}"
